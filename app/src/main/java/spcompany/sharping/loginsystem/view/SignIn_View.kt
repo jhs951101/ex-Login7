@@ -13,11 +13,11 @@ import spcompany.sharping.loginsystem.controller.HttpController
 
 class SignIn_View : AppCompatActivity() {
 
-    lateinit var usernameEtext: EditText
-    lateinit var passwordEtext: EditText
+    private lateinit var usernameEtext: EditText
+    private lateinit var passwordEtext: EditText
 
-    val alertController = AlertController(this)
-    val httpController = HttpController()
+    private val alertController = AlertController(this)
+    private val httpController = HttpController()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
