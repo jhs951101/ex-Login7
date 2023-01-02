@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="spcompany.sharping.loginsystem">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission-sdk-23 android:name="android.permission.UPDATE_DEVICE_STATS"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:theme="@style/Theme.Design.NoActionBar"
+        android:label="LoginSystem"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".view.SignIn_View"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!--
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+             -->
+        </activity>
+        <activity android:name=".view.SignUp_View" />
+        <activity android:name=".view.Info_View" />
+    </application>
+
+</manifest>
