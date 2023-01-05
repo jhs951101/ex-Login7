@@ -40,12 +40,11 @@ class SignIn_View : AppCompatActivity() {
             alertController.show("Error", "비밀번호를 입력하십시오.")
         } else {
             val response = httpController.post(
-                "https://tails1101.cafe24.com/test/signinjson.php",
+                "(URL 입력)",
                 mapOf("username" to username, "password" to password)
             )
 
             if(response != null){
-                println(response)
                 val jsonResponse = JSONObject(response)
                 val success = jsonResponse.getBoolean("success")
 
