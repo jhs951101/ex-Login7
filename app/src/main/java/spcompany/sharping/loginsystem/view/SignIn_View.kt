@@ -40,17 +40,15 @@ class SignIn_View : AppCompatActivity() {
             alertController.show("Error", "비밀번호를 입력하십시오.")
         } else {
             val response = httpController.post(
-                "(URL 입력)",
+                "https://tails1101.cafe24.com/test/signin_post_json.php",
                 mapOf("username" to username, "password" to password)
             )
 
             if(response != null){
-                val jsonResponse = JSONObject(response)
-                val success = jsonResponse.getBoolean("success")
+                val success = response.getBoolean("success")
 
                 if(success) {
-                    val username = jsonResponse.getString ("username")
-                    val name = jsonResponse.getString ("name")
+                    val name = response.getString ("name")
 
                     val intent = Intent(applicationContext, Info_View::class.java)
                     intent.putExtra("username", username)
@@ -69,6 +67,8 @@ class SignIn_View : AppCompatActivity() {
     }
 
     fun toSignupButtonPressed(view: View?) {
+        alertController.show("Error", "죄송합니다. 아직 준비중입니다.")
+
         /*
         val intent = Intent(applicationContext, SignUp_View::class.java)
         startActivity(intent)

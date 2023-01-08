@@ -5,12 +5,13 @@ import java.io.DataOutputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import org.json.JSONObject
 
 
 class HttpController {
 
-    fun get(url: String, params: Map<String, String>): String? {
-        var result: String? = null
+    fun get(url: String, params: Map<String, String>): JSONObject? {
+        var result: JSONObject? = null
         var wait = true
 
         val thread = Thread {
@@ -39,10 +40,14 @@ class HttpController {
 
                 BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
                     var line: String?
+                    var resultStr: String? = ""
+
                     while (br.readLine().also { line = it } != null) {
-                        result += line
+                        resultStr += line
                     }
-                    result = result?.replaceFirst("null", "")
+
+                    resultStr = resultStr?.replaceFirst("null", "")
+                    result = JSONObject(resultStr)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -58,8 +63,8 @@ class HttpController {
         return result
     }
 
-    fun post(url: String, params: Map<String, String>): String? {
-        var result: String? = null
+    fun post(url: String, params: Map<String, String>): JSONObject? {
+        var result: JSONObject? = null
         var wait = true
 
         val thread = Thread {
@@ -95,10 +100,14 @@ class HttpController {
                 DataOutputStream(conn.outputStream).use { it.writeBytes(data) }
                 BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
                     var line: String?
+                    var resultStr: String? = ""
+
                     while (br.readLine().also { line = it } != null) {
-                        result += line
+                        resultStr += line
                     }
-                    result = result?.replaceFirst("null", "")
+
+                    resultStr = resultStr?.replaceFirst("null", "")
+                    result = JSONObject(resultStr)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
